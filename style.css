@@ -166,3 +166,13 @@ ol.footnotes li::before {
   position: absolute;
   left: 0;
 }
+
+.mobile-break {
+  display: none;
+}
+
+@media (pointer:none), (pointer:coarse), (hover: none) {
+  .mobile-break {
+    display: inline;
+  }
+}
