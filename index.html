@@ -1,1 +1,151 @@
-This is a placeholder.
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" content="text/css" href="style.css">
+  <link rel="shortcut icon" href="favicon.png">
+  <title>MIKE - PQ NIKE</title>
+</head>
+
+<body>
+  <div style="text-align: center;">
+    <h1><span>MIKE</span></h1>
+    <p><i>a fast and compact post-quantum NIKE</i></p>
+  </div>
+
+  <hr>
+
+  <p>
+    MIKE (<i>Module Isogeny Key-Exchange</i>) is a fast and compact post-quantum
+    non-interactive key exchange, based on isogeny assumptions
+    (like the <a href="https://sqisign.org">SQIsign</a> signature).
+    MIKE boasts the smallest public (and secret) keys amongst a <a
+    href=" https://pqshield.github.io/nist-sigs-zoo/kems/">large range</a> of
+    post-quantum KEMs.
+  </p>
+
+  <h2>
+    Performance
+  </h2>
+
+  <p>
+    We provide two conservative parameter sets: <i>rigorous</i> and <i>fast</i>.<sup><a href="#Note1">[1]</a></sup>
+  </p>
+
+  <table>
+    <caption>
+      Pure C implementation using assembly-optimised finite-field arithmetic;
+      includes no AVX.
+      Implementation is constant time
+      and includes supersingularity verification of public keys.
+      Benchmarked on <code>AMD Ryzen 7 PRO 7840U @ 3.3GHz</code>
+      with turboboost and multithreading disabled.
+      Results rounded to three figures of precision.
+      For comparison, the lattice-based NIKE
+      <a href="https://eprint.iacr.org/2023/271">Swoosh</a>
+      takes 38ms for KeyGen and 2.5ms for SharedKey on the same hardware.
+    </caption>
+    <tr class="boldrule">
+      <th class="vertical-header"></th>
+      <th>NIST <br> Level</th>
+      <th>Public Key <br> (B)</th>
+      <th>Secret Key <br> (B)</th>
+      <th>Key Gen <br> (ms)</th>
+      <th>Shared Key <br>(ms)</th>
+    </tr>
+
+    <tr>
+      <td rowspan="3" class="vertical-cell"><span>Fast</span></td>
+                            <td>I</td>   <td class="pad1">80</td>  <td>32</td> <td>0.65</td> <td class="pad1">4.9</td> </tr>
+      <tr>                  <td>III</td>              <td>122</td> <td>48</td> <td>2.12</td>  <td>15.2</td> </tr>
+      <tr class="boldrule"> <td>V</td>                <td>160</td> <td>64</td> <td>4.21</td>  <td>28.6</td> </tr>
+
+    <tr>
+      <td rowspan="3" class="vertical-cell"><span>Rigorous</span></td>
+                            <td>I</td>   <td class="pad1">96</td>  <td>47</td> <td>0.86</td> <td class="pad1">6.2</td> </tr>
+      <tr>                  <td>III</td>              <td>144</td> <td>71</td> <td>2.57</td>  <td>18.0</td> </tr>
+      <tr class="boldrule"> <td>V</td>                <td>192</td> <td>95</td> <td>8.12</td>  <td>51.1</td> </tr>
+  </table>
+
+  <h2>Resources</h2>
+  <ul>
+    <!-- <li> -->
+    <!--   <a href="https://eprint.iacr.org/2026/XXX">MIKE: a fast and compact post-quantum NIKE</a> -->
+    <!--   <span class="muted">ePrint 2026/XXX</span> -->
+    <!-- </li> -->
+    <li>
+      <a href="mike.pdf">MIKE: a fast and compact post-quantum NIKE</a>
+    </li>
+    <li>
+      <a href="https://giacomopope.com/mike/">A String Theorist’s Guide to Implementing MIKE</a>
+      <span class="muted">Blog post</span>
+    </li>
+    <li>
+      <a href="https://eprint.iacr.org/2024/1556">The module action for isogeny based cryptography</a>
+      <span class="muted">ePrint 2024/1556</span>
+    </li>
+  </ul>
+
+  <h2>Implementations</h2>
+  <ul>
+    <li>
+      <a href="https://github.com/tensor-mike/mike_c">Pure C</a>
+      <span class="muted">Portable and low-level</span>
+    </li>
+    <li>
+      <a href="https://github.com/tensor-mike/mike_rs">Rust</a>
+      <span class="muted">Easy-to-integrate crate</span>
+    </li>
+    <li>
+      <a href="https://github.com/tensor-mike/mike_py">Python/SageMath</a>
+      <span class="muted">High-level, < 1000 LOC</span>
+    </li>
+  </ul>
+
+  <h2>Team</h2>
+  <ul>
+    <li>Andrea Basso <br> <span class="muted">IBM Research Europe, Switzerland</span></li>
+    <li>Pierrick Dartois <br> <span class="muted">DGA-MI, Bruz, France<br>Univ. Rennes, Inria, CNRS, IRISA, UMR 6074, F-35000, Rennes, France</span></li>
+    <li>Max Duparc <br> <span class="muted">EPF Lausanne, Switzerland</span></li>
+    <li>Jonathan Komada Eriksen <br> <span class="muted">COSIC, KU Leuven, Belgium<br>Nasjonal sikkerhetsmyndighet, Norway</span></li>
+    <li>Sabrina Kunzweiler <br> <span class="muted">Centre Inria de l'Universite de Bordeaux, France</span></li>
+    <li>Michael Meyer <br> <span class="muted">University of Regensburg, Germany</span></li>
+    <li>Giacomo Pope <br> <span class="muted">NCC Group<br>The University of Bristol, United Kingdom</span></li>
+    <li>Krijn Reijnders <br> <span class="muted">COSIC, KU Leuven, Belgium</span></li>
+    <li>Damien Robert <br> <span class="muted">Centre Inria de l'Universite de Bordeaux, France</span></li>
+    <li>Ryan Rueger <br> <span class="muted">IBM Research Europe, Switzerland<br>Technical University of Munich, Germany</span></li>
+    <li>Sina Schaeffler <br> <span class="muted">IBM Research Europe, Switzerland<br>ETH Zurich, Switzerland </span></li>
+  </ul>
+
+  <a href="https://www.ams.org/learning-careers/leaders/CultureStatement04.pdf">Listed alphabetically.</a>
+
+  <h2>Funding</h2>
+  <ul>
+    <li>SNSF Grant CryptonIs 213766</li>
+    <li>ANR-22-PETQ-0008 PQ-TLS</li>
+    <li>ERC grant ISOCRYPT, 101020788</li>
+    <li>Research Council KU Leuven, C14/24/099</li>
+    <li>CyberSecurity Research Flanders, VOEWICS02</li>
+    <li>BPI France project RESQUE</li>
+    <li>Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – 577658121</li>
+  </ul>
+
+  <h2>Contact</h2>
+  <p>
+    <a href="mailto:mike@inria.fr">mike@inria.fr</a>
+  </p>
+
+  <h2>Notes</h2>
+  <ol class="footnotes">
+    <li id="Note1">
+    The security proof of the fast variant relies on the additional assumption that
+    MIKE public keys
+    (which are supersingular elliptic curves),
+    are indistinguishable from randomly sampled supersingular elliptic curves.
+    Even if this assumption is broken, it would not give a direct attack on
+    MIKE.
+  </ol>
+</body>
+</html>

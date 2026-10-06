@@ -1,0 +1,168 @@
+:root {
+  --accent: #172880;
+  --institute: #777777;
+
+  --h1-size: 24pt;
+  --hx-size: 14pt;
+  --body-size: 11pt;
+  --code-size: 11pt;
+  --caption-size: 10pt;
+}
+
+body {
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+
+  font-family: arial, sans-serif;
+  font-size: var(--body-size);
+
+  line-height: 1.25;
+}
+
+code {
+  font-family: monospace;
+  font-size: var(--code-size);
+  color: var(--accent);
+}
+
+pre {
+  padding: 0em;
+  margin: 0em;
+  /* white-space: nowrap; */
+  overflow-x: auto;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+/* Chrome / Safari / Edge */
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+hr {
+  border-bottom: 1px solid black;
+}
+
+h1 span {
+  color: white;
+  background-color: var(--accent);
+  box-shadow: 10px 0px 0px 10px var(--accent), -10px 0 0px 10px var(--accent);
+  margin: 20px;
+  font-size: var(--h1-size);
+}
+
+h2, h3, h4, h5 {
+  font-size: var(--hx-size);
+  padding-bottom: 0.25em;
+  border-bottom: 1.5px solid #000;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style-type: none;
+  list-style-position: inside;
+  padding-left: 0em;
+}
+
+li {
+  margin-bottom: 0.75ex;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Align numbers in centred columns by padding with an invisible digit */
+td.pad1::before {
+  content: "0";
+  visibility: hidden;
+}
+
+table td {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+
+table tr {
+  border-bottom: 1px solid #ccc;
+  /* border-top: 1px solid #ccc; */
+}
+
+table th {
+  padding-bottom: 1ex;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+table caption {
+  font-size: var(--caption-size);
+  padding-top: 0.5em;
+  caption-side: bottom;
+}
+
+table caption code {
+  font-size: var(--caption-size);
+}
+
+.boldrule {
+  border-bottom: 1px solid #000;
+}
+
+.muted {
+  color: var(--institute);
+  font-style: italic;
+}
+
+/* Ref: https://stackoverflow.com/a/47245068 */
+.vertical-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.vertical-cell span {
+  display: block;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+/* Ref: https://stackoverflow.com/a/22531181 */
+ol {
+  padding-left: 0em;
+  list-style-position: inside;
+}
+
+ol.footnotes {
+  list-style: none;
+  counter-reset: item;
+  padding-left: 0;
+}
+
+ol.footnotes li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+ol.footnotes li::before {
+  content: "[" counter(item) "] ";
+  position: absolute;
+  left: 0;
+}
