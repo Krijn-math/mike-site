@@ -137,12 +137,13 @@
   <h2>Notes</h2>
   <ol class="footnotes">
     <li id="Note1">
-    The security proof of the fast variant relies on the additional assumption that
-    MIKE public keys
-    (which are supersingular elliptic curves),
-    are indistinguishable from randomly sampled supersingular elliptic curves.
-    Even if this assumption is broken, it would not give a direct attack on
-    MIKE.
+    The fast variant makes more aggressive (but still ultimately conservative)
+    parameter choices for both the underlying field characteristic and secret
+    key length. However, picking shorter secret keys results in a distribution
+    of public keys that is far from uniform: to make the proof work, we make the
+    fairly mild assumption that the "fast" public keys are indistinguishable
+    from random. We emphasise that breaking this assumption does not give a
+    (direct) attack on MIKE.
   </ol>
 </body>
 </html>
